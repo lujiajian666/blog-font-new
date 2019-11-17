@@ -1,8 +1,6 @@
 const config = require('./webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
@@ -13,7 +11,7 @@ const resolve = function(str) {
 const publicPath = './';
 const webpackConfig = {
   entry: {
-    index: resolve('../src/main.js')
+    index: resolve('../src/app.js')
   },
   output: {
     path: resolve('../dist'),
@@ -91,26 +89,6 @@ const webpackConfig = {
           name: 'static/font/[name].[hash:8].[ext]',
           publicPath: '/'
         }
-      },
-      {
-        test: /.(less|css)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [
-                require('autoprefixer'),
-                require('postcss-pxtorem')({
-                  rootValue: 37.5,
-                  propList: ['*']
-                })
-              ]
-            }
-          },
-          'less-loader'
-        ]
       }
     ]
   },
@@ -121,30 +99,21 @@ const webpackConfig = {
       }
     }),
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: resolve('../public/index.html'),
-      filename: 'index.html',
-      inject: true,
-      title: config.shareConfig.title,
-      desc: config.shareConfig.desc,
-      baseUrl: publicPath
-    }),
-    new MiniCssExtractPlugin({
-      filename: `static/css/[name].[hash:8].css`
-    }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorOptions: { safe: true, discardComments: { removeAll: true } }
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: resolve('../public/index.html'),
+    //   filename: 'index.html',
+    //   inject: true,
+    //   title: config.shareConfig.title,
+    //   desc: config.shareConfig.desc,
+    //   baseUrl: publicPath
+    // }),
     new CopyWebpackPlugin([
       {
         from: 'public',
         to: 'static'
       }
     ]),
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     hot: true,

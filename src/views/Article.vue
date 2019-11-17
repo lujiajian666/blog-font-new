@@ -99,7 +99,9 @@ import {
 } from '../service/axios';
 import particlesJS from 'particles.js';
 import cookie from 'js-cookie';
+//登录组件
 import loginComponent from '../components/login/index';
+Vue.use(loginComponent);
 export default {
   data () {
     return {
