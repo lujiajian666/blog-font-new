@@ -1,31 +1,54 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<style lang="less">
+  * {
+    padding: 0;
+    margin: 0
+  }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  // 自定义富文本样式
+  .ql-syntax {
+    padding: 15px;
+    color: rgba(255, 255, 255, .8);
+    font-size: 16px;
+    line-height: 26px;
+    background: rgba(0, 0, 0, .8);
+    border-radius: 5px;
+  }
+
+  blockquote {
+    border-left: 4px solid #ccc;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 16px;
+  }
+
+  .ql-align-center {
+    text-align: center;
+  }
+
+  .index img {
+    max-width: 100%;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
+
 </style>
