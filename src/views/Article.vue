@@ -3,9 +3,11 @@
     <div class="index" id="articlePage" v-if="tableData">
       <p class="tag">
         lulujiang的个人博客
-        <span class="tags" v-for="(value, index) in tags" :key="index">
-          {{ types[value] }}
-        </span>
+        <span
+          class="tags"
+          v-for="(value, index) in tags"
+          :key="index"
+        >{{ types[value] }}</span>
       </p>
       <div class="container">
         <div class="inner">
@@ -16,71 +18,47 @@
         <div class="comment-text-area">
           <textarea v-model="comment"></textarea>
           <input type="button" value="发表" @click="addComment()" />
-          <input
-            v-if="username"
-            type="button"
-            class="logout"
-            value="退出登录"
-            @click="logout()"
-          />
-          <input
-            v-else
-            type="button"
-            class="login"
-            value="登录"
-            @click="login()"
-          />
+          <input v-if="username" type="button" class="logout" value="退出登录" @click="logout()" />
+          <input v-else type="button" class="login" value="登录" @click="login()" />
         </div>
         <ul class="comment">
           <li v-for="(item, index) in parentComment" :key="index">
-            <span
-              >{{
-                item.username === tableData.username ? "作者" : item.username
-              }}：</span
-            >
+            <span>
+              {{
+              item.username === tableData.username ? "作者" : item.username
+              }}：
+            </span>
             <span>{{ item.content }}</span>
             <template v-if="replyId === item.id">
               <br />
               <input v-model="replyText" />
-              <span class="reply pointer cancel" @click="cancelReply(item.id)"
-                >取消</span
-              >
+              <span class="reply pointer cancel" @click="cancelReply(item.id)">取消</span>
             </template>
-            <span
-              class="reply pointer"
-              @click="reply(item.id)"
-              v-if="item.username !== username"
-              >回复</span
-            >
+            <span class="reply pointer" @click="reply(item.id)" v-if="item.username !== username">回复</span>
             <ul>
               <li v-for="(item2, index2) in item.list" :key="index2">
-                <span
-                  >{{
-                    item2.username === tableData.username
-                      ? "作者"
-                      : item2.username
+                <span>
+                  {{
+                  item2.username === tableData.username
+                  ? "作者"
+                  : item2.username
                   }}
                   回复
                   {{
-                    item2.to === tableData.username ? "作者" : item2.to
-                  }}：</span
-                >
+                  item2.to === tableData.username ? "作者" : item2.to
+                  }}：
+                </span>
                 <span>{{ item2.content }}</span>
                 <template v-if="replyId === item2.id">
                   <br />
                   <input v-model="replyText" />
-                  <span
-                    class="reply pointer cancel"
-                    @click="cancelReply(item2.id)"
-                    >取消</span
-                  >
+                  <span class="reply pointer cancel" @click="cancelReply(item2.id)">取消</span>
                 </template>
                 <span
                   class="reply pointer"
                   @click="reply(item2.id)"
                   v-if="item2.username !== username"
-                  >回复</span
-                >
+                >回复</span>
               </li>
             </ul>
           </li>
@@ -97,16 +75,17 @@ import {
   get,
   post
 } from '../service/axios';
-import particlesJS from 'particles.js';
+import Vue from 'vue';
 import cookie from 'js-cookie';
-//登录组件
+// //登录组件
 import loginComponent from '../components/login/index';
-Vue.use(loginComponent);
 export default {
+  components: {
+    loginComponent
+  },
   data () {
     return {
       username: cookie.get('username'),
-      tableData: null,
       types: null,
       showLogin: false,
       comment: '',
@@ -119,16 +98,14 @@ export default {
       currentPage: 1
     }
   },
+  asyncData ({ store, route }) {
+    return store.dispatch('fetchArticle', route.params.id)
+  },
   created () {
-    get('/article/get', {
-      id: this.$route.params.id
-    }).then(res => {
-      this.tableData = res.data;
-    }).then(_ => {
-      return get('/article/type/get', {
-        currentPage: 1,
-        pageSize: 100
-      });
+    Vue.use(loginComponent);
+    return get('/article/type/get', {
+      currentPage: 1,
+      pageSize: 100
     }).then(_ => {
       this.types = _.data.list.reduce((total, item) => {
         total[item.id] = item.name;
@@ -137,23 +114,17 @@ export default {
     }).catch(e => {
       console.log(e)
     })
-
     this.getComment();
-  },
-  mounted () {
-    window.particlesJS.load('particlarjs', './static/particles.json', function () {
-      console.log('callback - particles.js config loaded');
-    })
   },
   computed: {
     tags () {
       if (this.types) {
         return this.tableData.types.split(';').filter(item => !!item);
       }
+    },
+    tableData () {
+      return this.$store.state.article[this.$route.params.id]
     }
-  },
-  components: {
-    loginComponent
   },
   methods: {
     addComment (id) {

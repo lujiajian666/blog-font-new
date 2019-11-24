@@ -23,6 +23,7 @@
       </ul>
       <div class="footer">
         <el-pagination
+          class="el-pagination is-background"
           layout="prev, pager, next"
           :total="total"
           background
@@ -68,6 +69,7 @@ export default {
   },
   methods: {
     listArticle () {
+      return
       this.$store.dispatch('listArticles', {
         currentPage: this.currentPage
       })

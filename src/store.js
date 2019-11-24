@@ -14,8 +14,8 @@ export function createStore() {
       currentPage: 1
     },
     mutations: {
-      setArticle(state, { id, item }) {
-        state.article[id] = item;
+      setArticle(state, { id, data }) {
+        state.article[id] = data;
       },
       setPageMessage(state, val) {
         ({ 
@@ -29,8 +29,8 @@ export function createStore() {
       fetchArticle({ commit }, id) {
         // `store.dispatch()` 会返回 Promise，
         // 以便我们能够知道数据在何时更新
-        return fetchArticle(id).then(item => {
-          commit('setArticle', { id, item });
+        return fetchArticle(id).then(data => {
+          commit('setArticle', { id, data });
         });
       },
       listArticles({ commit }, params = {}) {

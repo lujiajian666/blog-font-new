@@ -14,8 +14,8 @@ server.use('/static', function(req, res, next){
   next();
 },express.static(path.resolve(__dirname, '../dist/static')))
 
-server.get('/', (req, res) => {
-  console.log('请求页面')
+server.get('*', (req, res) => {
+  console.log('请求页面:' + req.url)
   const context = { 
     url: req.url,
     title: config.shareConfig.title,

@@ -16,7 +16,11 @@ function listArticles (extParams) {
     }
   })
 }
-function fetchArticle () {
-
+function fetchArticle (id) {
+  return get('/article/get', {
+    id
+  }).then(res => {
+    return res.data
+  })
 }
 export { listArticles, fetchArticle }

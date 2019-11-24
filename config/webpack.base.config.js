@@ -8,7 +8,7 @@ const path = require('path');
 const resolve = function(str) {
   return path.resolve(__dirname, str);
 };
-const publicPath = './';
+const publicPath = '/';
 const webpackConfig = {
   entry: {
     index: resolve('../src/app.js')
