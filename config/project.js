@@ -1,6 +1,6 @@
 import common from './common';
 const develop = {
-  baseUrl: 'http://localhost:8888'
+  baseUrl: 'http://www.lujiajian.xyz'
 }
 
 const product = {

@@ -69,7 +69,6 @@ export default {
   },
   methods: {
     listArticle () {
-      return
       this.$store.dispatch('listArticles', {
         currentPage: this.currentPage
       })
@@ -117,7 +116,8 @@ export default {
     .footer {
       position: absolute;
       left: 50%;
-      bottom: 10px;
+      bottom: 0;
+      width: 100%;
       transform: translateX(-50%);
     }
   }

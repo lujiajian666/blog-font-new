@@ -5,8 +5,8 @@ const baseConfig = require('./webpack.base.config.js');
 const VueSSRServerPlugin = require('vue-server-renderer/client-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
-const path = require('path')
+const isPro = process.env.HOST_ENV === 'pro';
+const path = require('path');
 module.exports = merge(baseConfig, {
   // 将 entry 指向应用程序的 server entry 文件
   entry: path.resolve(__dirname, '../src/entry-client.js'),
@@ -14,7 +14,7 @@ module.exports = merge(baseConfig, {
   devtool: 'source-map',
   optimization: {
     splitChunks: {
-      name: "manifest",
+      name: 'manifest',
       minChunks: Infinity
     }
   },
@@ -48,13 +48,13 @@ module.exports = merge(baseConfig, {
   plugins: [
     new CleanWebpackPlugin(),
     new VueSSRServerPlugin(),
-     new MiniCssExtractPlugin({
-      filename: `static/css/[name].[hash:8].css`
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[hash:8].css'
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano'),
       cssProcessorOptions: { safe: true, discardComments: { removeAll: true } }
-    }),
+    })
   ]
-})
+});

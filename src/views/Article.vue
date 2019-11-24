@@ -103,7 +103,7 @@ export default {
   },
   created () {
     Vue.use(loginComponent);
-    return get('/article/type/get', {
+    get('/article/type/get', {
       currentPage: 1,
       pageSize: 100
     }).then(_ => {

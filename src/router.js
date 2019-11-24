@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+const isPro = process.env.HOST_ENV === 'pro';
+const prefix = isPro ? '/blog' : ''
 Vue.use(Router);
 
 export function createRouter() {
@@ -7,12 +9,12 @@ export function createRouter() {
     mode: 'history',
     routes: [
       {
-        path: '/',
+        path: prefix + '/',
         name: 'home',
         component: () => import(/* webpackChunkName: "home" */ './views/Index.vue')
       },
       {
-        path: '/article/:id',
+        path: prefix + '/article/:id',
         name: 'article',
         component: () => import(/* webpackChunkName: "article" */ './views/Article.vue')
       }

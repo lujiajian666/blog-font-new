@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "export HOST_ENV=dev && webpack-dev-server  --inline --progress --config config/webpack.base.config.js",
     "build": "webpack --config config/webpack.base.config.js",
-    "go": "webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && node server/index.js"
+    "ssr-dev": "export HOST_ENV=dev && webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && node server/index.js",
+    "ssr-pro": "export HOST_ENV=pro && webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && node server/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -59,6 +60,7 @@
     "express": "^4.17.1",
     "js-cookie": "^2.2.1",
     "particles.js": "^2.0.0",
-    "vue-server-renderer": "^2.6.10"
+    "vue-server-renderer": "^2.6.10",
+    "vuex-router-sync": "^5.0.0"
   }
 }

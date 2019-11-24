@@ -8,7 +8,10 @@ const path = require('path');
 const resolve = function(str) {
   return path.resolve(__dirname, str);
 };
-const publicPath = '/';
+let publicPath = '/blog/';
+if (process.env.HOST_ENV === 'dev') {
+  publicPath = '/';
+}
 const webpackConfig = {
   entry: {
     index: resolve('../src/app.js')
@@ -76,7 +79,7 @@ const webpackConfig = {
             options: {
               limit: 2048,
               name: 'static/img/[name].[hash:8].[ext]',
-              publicPath: '/'
+              publicPath
             }
           }
         ]
@@ -87,7 +90,7 @@ const webpackConfig = {
         options: {
           limit: 10000,
           name: 'static/font/[name].[hash:8].[ext]',
-          publicPath: '/'
+          publicPath
         }
       }
     ]
