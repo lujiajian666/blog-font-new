@@ -60,6 +60,7 @@
     "express": "^4.17.1",
     "js-cookie": "^2.2.1",
     "particles.js": "^2.0.0",
+    "vue-quill-editor": "^3.0.6",
     "vue-server-renderer": "^2.6.10",
     "vuex-router-sync": "^5.0.0"
   }

@@ -9,8 +9,8 @@
           :key="index"
         >{{ types[value] }}</span>
       </p>
-      <div class="container">
-        <div class="inner">
+      <div class="container ql-snow">
+        <div class="inner ql-editor">
           <h1>{{ tableData.title }}</h1>
           <p class="time">{{ tableData.createTime }}</p>
           <div v-html="tableData.text"></div>
@@ -65,7 +65,7 @@
         </ul>
       </div>
     </div>
-    <div class="background" id="particlarjs"></div>
+    <!-- <div class="background" id="particlarjs"></div> -->
     <login-component v-if="showLogin"></login-component>
   </div>
 </template>
@@ -241,6 +241,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../../node_modules/quill/dist/quill.core.css';
+@import '../../node_modules/quill/dist/quill.snow.css';
 .index {
   padding: 40px;
   text-align: left;
@@ -276,7 +278,6 @@ export default {
       font-size: 30px;
     }
     .time {
-      margin-bottom: 40px;
       color: #78a5f1;
       font-size: 17px;
     }

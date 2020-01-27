@@ -1,34 +1,34 @@
 {
   "publicPath": "/",
   "all": [
-    "static/css/article.893d40f8.css",
-    "static/css/home.893d40f8.css",
-    "static/css/main.893d40f8.css",
+    "static/css/article.e1da6358.css",
+    "static/css/home.e1da6358.css",
+    "static/css/main.e1da6358.css",
     "static/favicon.ico",
     "static/flexible.js",
     "static/font/element-icons.535877f5.woff",
     "static/font/element-icons.732389de.ttf",
     "static/img/bg.d4a0c8d9.jpg",
-    "static/img/bg2.f648c913.png",
+    "static/img/bg2.0c23f30f.png",
     "static/index.html",
-    "static/js/article.893d40f8.js",
-    "static/js/article.893d40f8.js.map",
-    "static/js/home.893d40f8.js",
-    "static/js/home.893d40f8.js.map",
-    "static/js/main.893d40f8.js",
-    "static/js/main.893d40f8.js.map",
+    "static/js/article.e1da6358.js",
+    "static/js/article.e1da6358.js.map",
+    "static/js/home.e1da6358.js",
+    "static/js/home.e1da6358.js.map",
+    "static/js/main.e1da6358.js",
+    "static/js/main.e1da6358.js.map",
     "static/particles.json"
   ],
   "initial": [
-    "static/css/main.893d40f8.css",
-    "static/js/main.893d40f8.js"
+    "static/css/main.e1da6358.css",
+    "static/js/main.e1da6358.js"
   ],
   "async": [
-    "static/css/article.893d40f8.css",
-    "static/css/home.893d40f8.css",
+    "static/css/article.e1da6358.css",
+    "static/css/home.e1da6358.css",
     "static/flexible.js",
-    "static/js/article.893d40f8.js",
-    "static/js/home.893d40f8.js"
+    "static/js/article.e1da6358.js",
+    "static/js/home.e1da6358.js"
   ],
   "modules": {
     "15095596": [
@@ -2001,6 +2001,18 @@
       6,
       5,
       6
+    ],
+    "5a022990": [
+      0,
+      10,
+      11,
+      8
+    ],
+    "c1e44d18": [
+      0,
+      10,
+      11,
+      8
     ],
     "665664ea": [
       0,
