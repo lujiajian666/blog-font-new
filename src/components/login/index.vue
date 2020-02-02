@@ -139,7 +139,7 @@
         this.$refs[formName].resetFields();
       },
       signUp() {
-        post('/article/register', {
+        post('/article/user/register', {
           password: this.signUpForm.password,
           username: this.signUpForm.username
         }).then(ret => {
@@ -152,7 +152,7 @@
         })
       },
       signIn() {
-        post('/article/login', this.signInForm).then(_ => {
+        post('/article/user/login', this.signInForm).then(_ => {
           // this.show = false;
           this.$message.success('登录成功');
           window.location.reload()
