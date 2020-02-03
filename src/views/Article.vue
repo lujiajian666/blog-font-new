@@ -94,8 +94,7 @@ export default {
       //所有评论
       allComment: null,
       //所有父级评论
-      parentComment: null,
-      currentPage: 1
+      parentComment: null
     }
   },
   asyncData ({ store, route }) {
@@ -174,11 +173,9 @@ export default {
     },
     getComment () {
       get('/article/comment/get', {
-        id: this.$route.params.id,
-        currentPage: 1
+        id: this.$route.params.id
       }).then(res => {
-        this.allComment = res.data.list;
-        this.currentPage = res.data.currentPage + 1;
+        this.allComment = res.data;
       }).then(_ => {
         //排列评论
         const sequence = [];
