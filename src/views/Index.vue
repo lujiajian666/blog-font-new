@@ -132,7 +132,6 @@ export default {
       list-style: none;
       cursor: pointer;
       background: #f5deb382;
-      border-radius: 10px;
     }
   }
 
