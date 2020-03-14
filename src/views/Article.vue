@@ -269,7 +269,7 @@ export default {
   .container {
     padding: 10px 15px;
     font-size: 16px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.6);
 
     h1 {
       font-size: 30px;
