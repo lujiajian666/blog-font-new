@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "export HOST_ENV=dev && webpack-dev-server  --inline --progress --config config/webpack.base.config.js",
+    "dev": "export HOST_ENV=dev && webpack-dev-server  --inline --progress --config config/webpack.dev.config.js",
     "build": "webpack --config config/webpack.base.config.js",
     "ssr-dev": "export HOST_ENV=dev && webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && node server/index.js",
     "ssr-pro": "export HOST_ENV=pro && webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && node server/index.js"
