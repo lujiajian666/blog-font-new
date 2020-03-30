@@ -33,6 +33,9 @@ module.exports = merge(baseConfig, {
                 require('postcss-pxtorem')({
                   rootValue: 37.5,
                   propList: ['*']
+                }),
+                require('postcss-assets')({
+                  loadPaths: ['src/assets']
                 })
               ]
             }

@@ -1,6 +1,6 @@
 {
   "name": "font-new",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "dev": "export HOST_ENV=dev && webpack-dev-server  --inline --progress --config config/webpack.dev.config.js",
     "build": "webpack --config config/webpack.base.config.js",
     "ssr-dev": "export HOST_ENV=dev && webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && node server/index.js",
-    "ssr-pro": "export HOST_ENV=pro && webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && node server/index.js"
+    "ssr-pro": "export HOST_ENV=pro && webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && node server/index.js",
+    "ssr-run": "export HOST_ENV=pro && webpack --config config/webpack.client.config.js && webpack --config config/webpack.server.config.js && pm2 restart server/index.js --name blog-ssr"
   },
   "author": "",
   "license": "ISC",
@@ -39,6 +40,7 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-assets": "^5.0.0",
     "postcss-loader": "^3.0.0",
     "postcss-pxtorem": "^4.0.1",
     "raw-loader": "^0.5.1",

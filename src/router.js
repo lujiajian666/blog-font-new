@@ -11,7 +11,7 @@ export function createRouter() {
       {
         path: prefix + '/',
         name: 'home',
-        component: () => import(/* webpackChunkName: "home" */ './views/Index.vue')
+        component: () => import(/* webpackChunkName: "home" */ './views/index/Index.vue')
       },
       {
         path: prefix + '/article/:id',

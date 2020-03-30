@@ -85,6 +85,9 @@ const webpackConfig = {
                 require('postcss-pxtorem')({
                   rootValue: 37.5,
                   propList: ['*']
+                }),
+                require('postcss-assets')({
+                  loadPaths: ['src/assets']
                 })
               ]
             }
@@ -106,7 +109,7 @@ const webpackConfig = {
         ]
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test: /\.(woff2?|eot|ttf|otf|mp3)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -145,6 +148,7 @@ const webpackConfig = {
         to: 'static'
       }
     ]),
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
