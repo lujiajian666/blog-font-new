@@ -1,39 +1,42 @@
 <template>
-  <div class="login" v-if="show">
-    <i class="el-icon-error" @click="show = false"></i>
-    <div>
-      <span class="login-button pointer" :class="{actived: choosed === 0}" @click="choose(0)">登录</span>
-      <span class="register-button pointer" :class="{actived: choosed === 1}" @click="choose(1)">注册</span>
+  <div class="wrap"  v-if="show">
+    <div class="mask" @click="show = false"></div>
+    <div class="login">
+      <i class="el-icon-error" @click="show = false"></i>
+      <div>
+        <span class="login-button pointer" :class="{actived: choosed === 0}" @click="choose(0)">登录</span>
+        <span class="register-button pointer" :class="{actived: choosed === 1}" @click="choose(1)">注册</span>
+      </div>
+      <el-form v-show="choosed === 0" :model="signInForm" ref="signInForm" status-icon :rules="signInRule"
+        label-position="left">
+        <el-form-item label="账号" prop="username">
+          <el-input v-model.number="signInForm.username"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" v-model="signInForm.password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('signInForm')">提交</el-button>
+          <el-button @click="resetForm('signInForm')">重置</el-button>
+        </el-form-item>
+      </el-form>
+      <el-form v-show="choosed !== 0 " :model="signUpForm" ref="signUpForm" status-icon :rules="signUpRule"
+        label-position="left">
+        <el-form-item label="账号" prop="username">
+          <el-input v-model.number="signUpForm.username"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" v-model="signUpForm.password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码" prop="checkPass">
+          <el-input type="password" v-model="signUpForm.checkPass" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('signUpForm')">提交</el-button>
+          <el-button @click="resetForm('signUpForm')">重置</el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    <el-form v-show="choosed === 0" :model="signInForm" ref="signInForm" status-icon :rules="signInRule"
-      label-position="left">
-      <el-form-item label="账号" prop="username">
-        <el-input v-model.number="signInForm.username"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="signInForm.password" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('signInForm')">提交</el-button>
-        <el-button @click="resetForm('signInForm')">重置</el-button>
-      </el-form-item>
-    </el-form>
-    <el-form v-show="choosed !== 0 " :model="signUpForm" ref="signUpForm" status-icon :rules="signUpRule"
-      label-position="left">
-      <el-form-item label="账号" prop="username">
-        <el-input v-model.number="signUpForm.username"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="signUpForm.password" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="signUpForm.checkPass" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('signUpForm')">提交</el-button>
-        <el-button @click="resetForm('signUpForm')">重置</el-button>
-      </el-form-item>
-    </el-form>
   </div>
 </template>
 <script>
@@ -169,12 +172,20 @@
       }
     }
   }
-
 </script>
 <style lang="less" scoped>
+  .mask {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+  }
   .login {
     position: fixed;
-    z-index: 9990;
+    z-index: 9999;
     top: 50%;
     left: 50%;
     width: 300px;
@@ -218,5 +229,4 @@
       color: orange;
     }
   }
-
 </style>

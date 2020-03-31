@@ -51,20 +51,23 @@
 
   .ikaros {
     position: fixed;
-    bottom: 10px;
+    z-index: 30;
+    bottom: 40px;
     height: 50px;
     width: 50px;
+
     img {
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
       width: 100%;
-      z-index: 30;
+      z-index: 10;
       left: 30px;
-     
+
       border-radius: 50%;
       cursor: pointer;
+
       &.on {
         animation: rotate2 10s linear infinite;
       }
@@ -82,7 +85,6 @@
       left: 0;
       height: 100%;
       width: 100%;
-      z-index: 29;
       left: 30px;
       border-radius: 50%;
       border: orange 5px solid;

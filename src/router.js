@@ -6,7 +6,7 @@ Vue.use(Router);
 
 export function createRouter() {
   return new Router({
-    mode: 'history',
+    // mode: 'history',
     routes: [
       {
         path: prefix + '/',
@@ -16,7 +16,7 @@ export function createRouter() {
       {
         path: prefix + '/article/:id',
         name: 'article',
-        component: () => import(/* webpackChunkName: "article" */ './views/Article.vue')
+        component: () => import(/* webpackChunkName: "article" */ './views/article/Index.vue')
       }
     ]
   });

@@ -3,7 +3,7 @@
     <div class="nav">
       <div class="logo-box">
         <img src="../../assets/zhishen.jpg" class="logo">
-        <span class="title">lujiajian的个人博客～～</span>
+        <span class="title">Lu Jiajian的个人博客</span>
       </div>
       <div class="search">
         <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="search" size="small" @change="searchData">
