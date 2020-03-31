@@ -48,7 +48,7 @@
       return {
         search: '',
         types: [],
-        typeIndex: -1,
+        typeIndex: 0,
       }
     },
     asyncData({
@@ -60,7 +60,12 @@
     },
     created() {
       get('/article/countByType').then(_ => {
-        this.types = _.list;
+        let total = 0;
+        _.list.forEach(item => {
+          total += item.count;
+          this.types.push(item);
+        })
+        this.types.unshift({ name: '全部', count: total });
       }).catch(e => {
         console.log(e)
       })
@@ -87,22 +92,35 @@
     },
     methods: {
       listArticle() {
-        this.$store.dispatch('listArticles', {
+        const searchParams = {
           currentPage: this.currentPage
-        })
+        }
+        if (this.search) {
+          searchParams.key = this.search
+        } else if (this.typeId) {
+          searchParams.type = this.typeId
+        }
+        this.$store.dispatch('listArticles', searchParams)
       },
-      searchDataByType(type, index) {
-        this.typeIndex = index
-        this.$store.dispatch('listArticles', {
-          type,
-          currentPage: 1
-        })
+      searchDataByType(typeId, index) {
+        this.cleanOtherSearch();
+        this.typeIndex = index;
+        if (typeId !== undefined) { 
+          this.typeId = typeId;
+        }
+        this.listArticle();
       },
       searchData() {
-        this.$store.dispatch('listArticles', {
-          key: this.search,
-          currentPage: 1
-        })
+        const key = this.search;
+        this.cleanOtherSearch();
+        this.search = key;
+        this.listArticle();
+      },
+      cleanOtherSearch () {
+        this.currentPage = 1;
+        this.typeIndex = 0;
+        this.typeId = undefined;
+        this.search = '';
       }
     }
   }
