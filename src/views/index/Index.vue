@@ -15,7 +15,7 @@
       <div class="left">
         <h4>分类</h4>
         <ul>
-          <li v-for="(item, index) in types" :key="index" @click="searchDataByType(item.id)">{{ item.name }}（{{ item.count }}）</li>
+          <li :class="{ active: typeIndex === index }" v-for="(item, index) in types" :key="index" @click="searchDataByType(item.id, index)">{{ item.name }}（{{ item.count }}）</li>
         </ul>
       </div>
       <div class="right">
@@ -47,7 +47,8 @@
     data() {
       return {
         search: '',
-        types: []
+        types: [],
+        typeIndex: -1,
       }
     },
     asyncData({
@@ -90,7 +91,8 @@
           currentPage: this.currentPage
         })
       },
-      searchDataByType(type) {
+      searchDataByType(type, index) {
+        this.typeIndex = index
         this.$store.dispatch('listArticles', {
           type,
           currentPage: 1
