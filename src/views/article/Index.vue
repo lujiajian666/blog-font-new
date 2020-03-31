@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="tag">
-      <img data-v-52b17e8b="" src="/static/img/zhishen.9e8d1312.jpg" class="logo">
+      <img data-v-52b17e8b="" src="../../assets/zhishen.jpg" class="logo">
       Lu Jiajian的个人博客
       <span class="tags" v-for="(value, index) in tags" :key="index">{{ types[value] }}</span>
     </p>
