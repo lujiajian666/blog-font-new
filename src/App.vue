@@ -28,9 +28,24 @@
     methods: {
       play() {
         const audio = this.$refs.audio;
-        audio.play().then(_ => {
-          this.on = true
-        })
+        let hander;
+        let on;
+        if (audio.paused) {
+          hander = audio.play();
+          on = true;
+        } else {
+          hander = audio.pause();
+          on = false;
+        }
+
+        if (hander) {
+          hander.then(_ => {
+            
+            this.on = on;
+          })
+        } else {
+          this.on = on;
+        }
       },
     }
   }
@@ -67,9 +82,11 @@
 
       border-radius: 50%;
       cursor: pointer;
+      animation: rotate2 10s linear infinite;
+      animation-play-state: paused;
 
       &.on {
-        animation: rotate2 10s linear infinite;
+        animation-play-state: running;
       }
     }
 
