@@ -5,12 +5,15 @@
       Lu Jiajian的个人博客
       <span class="tags" v-for="(value, index) in tags" :key="index">{{ types[value] }}</span>
     </p>
-    <div :class="{index: !tableData.markdown_name }" id="articlePage" v-if="tableData">
-      <div class="container ql-snow" v-if="!tableData.markdown_name">
-        <div class="inner ql-editor">
+    <div class="index" id="articlePage" :class="{ white: tableData.markdown_name }" v-if="tableData">
+      <div class="container ql-snow">
+        <div v-if="!tableData.markdown_name" class="inner ql-editor">
           <h1>{{ tableData.title }}</h1>
           <p class="time">{{ tableData.createTime }}</p>
           <div v-html="tableData.text"></div>
+        </div>
+        <div v-else>
+         <iframe id="md-iframe" @load='iframeOnload' width="100%" frameborder="no" border="0" ref="iframe" style="height: 700px" :src="'http://www.lujiajian.xyz/html/markdown-show/?name=' + tableData.markdown_name"></iframe>
         </div>
         <div class="comment-text-area">
           <textarea v-model="comment"></textarea>
@@ -56,9 +59,6 @@
             </ul>
           </li>
         </ul>
-      </div>
-      <div v-else>
-        <iframe id="md-iframe" @load='iframeOnload' width="100%" frameborder="no" border="0" ref="iframe" style="height: 700px" :src="'http://www.lujiajian.xyz/html/markdown-show/?name=' + tableData.markdown_name"></iframe>
       </div>
     </div>
     <!-- <div class="background" id="particlarjs"></div> -->
