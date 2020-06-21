@@ -5,8 +5,8 @@
       Lu Jiajian的个人博客
       <span class="tags" v-for="(value, index) in tags" :key="index">{{ types[value] }}</span>
     </p>
-    <div class="index" id="articlePage" v-if="tableData">
-      <div class="container ql-snow">
+    <div :class="{index: !tableData.markdown_name }" id="articlePage" v-if="tableData">
+      <div class="container ql-snow" v-if="!tableData.markdown_name">
         <div class="inner ql-editor">
           <h1>{{ tableData.title }}</h1>
           <p class="time">{{ tableData.createTime }}</p>
@@ -56,6 +56,9 @@
             </ul>
           </li>
         </ul>
+      </div>
+      <div v-else>
+        <iframe @load='iframeOnload' width="100%" frameborder="no" border="0" ref="iframe" style="height: 700px" :src="'http://www.lujiajian.xyz/html/markdown-show/?name=' + tableData.markdown_name"></iframe>
       </div>
     </div>
     <!-- <div class="background" id="particlarjs"></div> -->
@@ -122,6 +125,14 @@
       }
     },
     methods: {
+      iframeOnload () {
+        // 动态获取iframe高度
+        const iframeDom = this.$refs.iframe;
+        const iframeDocument = iframeDom.contentWindow.document;
+        const height = iframeDocument.documentElement.scrollHeight || iframeDocument.body.scrollHeight;
+        console.log('iframe onload!', height)
+        iframeDom.style.height = height + 'px';
+      },
       addComment(id) {
         let loading = null;
         if (!id && this.comment === '' || id && this.replyText === '') {
