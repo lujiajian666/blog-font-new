@@ -58,7 +58,7 @@
         </ul>
       </div>
       <div v-else>
-        <iframe @load='iframeOnload' width="100%" frameborder="no" border="0" ref="iframe" style="height: 700px" :src="'http://www.lujiajian.xyz/html/markdown-show/?name=' + tableData.markdown_name"></iframe>
+        <iframe id="md-iframe" @load='iframeOnload' width="100%" frameborder="no" border="0" ref="iframe" style="height: 700px" :src="'http://www.lujiajian.xyz/html/markdown-show/?name=' + tableData.markdown_name"></iframe>
       </div>
     </div>
     <!-- <div class="background" id="particlarjs"></div> -->
