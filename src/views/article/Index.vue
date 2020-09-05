@@ -13,6 +13,7 @@
           <div v-html="tableData.text"></div>
         </div>
         <div v-else>
+          <h1>{{ tableData.title }}</h1>
          <iframe id="md-iframe" @load='iframeOnload' width="100%" frameborder="no" border="0" ref="iframe" style="height: 700px" :src="'http://www.lujiajian.xyz/html/markdown-show/?name=' + tableData.markdown_name"></iframe>
         </div>
         <div class="comment-text-area">
