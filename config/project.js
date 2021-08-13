@@ -4,7 +4,7 @@ const develop = {
 }
 
 const product = {
-  baseUrl: 'http://www.lujiajian.xyz'
+  baseUrl: 'https://www.lujiajian.xyz'
 }
 let ex = product;
 console.log('环境' + process.env.HOST_ENV)
